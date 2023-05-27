@@ -1,5 +1,5 @@
 # Front End Test
-An ReactJS focused take home test for Front-end Developers.
+A ReactJS focused take home test for Front-end Developers.
 
 ### Instructions
 * Clone this repo
