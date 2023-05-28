@@ -3,6 +3,7 @@ import { useGetUserQuery } from "../../services/jsonplaceholder";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Table from "../../components/table/Table";
 import Pagination from "../../components/pagination/Pagination";
+import Loading from "../loading/Loading";
 const Users = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState("all");
@@ -16,7 +17,7 @@ const Users = () => {
   });
 
   if (!data || isFetching) {
-    return <div>loading.....</div>;
+    return <Loading/>
   }
 
   //filter for search

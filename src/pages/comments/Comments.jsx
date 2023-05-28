@@ -3,6 +3,7 @@ import { useGetCommentsQuery } from "../../services/jsonplaceholder";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Table from "../../components/table/Table";
 import Pagination from "../../components/pagination/Pagination";
+import Loading from "../loading/Loading";
 const Comments = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [category,setCategory]=useState('all');
@@ -20,7 +21,7 @@ const Comments = () => {
   // console.log(data);
   
   if (!data) {
-    return <div>loading.....</div>;
+    return  <Loading/>
    
   } 
 

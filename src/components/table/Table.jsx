@@ -1,7 +1,6 @@
 import React from "react";
 import TableHeader from "./TableHeader";
 import TableData from "./TableData";
-import Pagination from "../pagination/Pagination";
 import "./table.scss";
 const Table = ({ fieldNames, data }) => {
   return (
