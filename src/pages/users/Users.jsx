@@ -14,11 +14,9 @@ const Users = () => {
   const { data, isError, isFetching, isLoading, isSuccess } = useGetUserQuery({
     start,
     end,
-    category,
-    value,
   });
 
-  console.log(data);
+  // console.log(data);
   
   if (!data) {
     return <div>loading.....</div>;

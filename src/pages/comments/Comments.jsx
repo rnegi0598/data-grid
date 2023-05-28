@@ -14,8 +14,6 @@ const Comments = () => {
   const { data, isError, isFetching, isLoading, isSuccess } = useGetCommentsQuery({
     start,
     end,
-    category,
-    value,
   });
 
   // console.log(data);

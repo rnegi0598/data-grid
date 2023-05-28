@@ -14,8 +14,6 @@ const Posts = () => {
   const { data, isError, isFetching, isLoading, isSuccess } = useGetPostsQuery({
     start,
     end,
-    category,
-    value,
   });
 
   if (!data) {
