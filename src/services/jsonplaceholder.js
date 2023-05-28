@@ -8,13 +8,42 @@ export const placeholderApi = createApi({
   keepUnusedDataFor: 60,
   endpoints: (builder) => ({
     getUser: builder.query({
-      query: () => "users",
+      query: ({start,end}) => {
+        if(start===-1 && end==-1){
+          return "users"
+        }
+        return `users?_start=${start}&_end=${end}`
+      },
+      transformResponse: (response) => {
+        // Modify the response data here
+        return response.map((item) => ({
+          id: item.id,
+          name: item.name,
+          username:item.username,
+          email:item.email,
+          address:item.address.street+" "+item.address.city,
+          phone:item.phone,
+          website:item.website,
+        }));
+      },
     }),
     getPosts: builder.query({
-        query: () => "posts",
+      query: ({start,end}) => {
+        
+        if(start===-1 && end===-1){
+          return "posts"
+        }
+        return `posts?_start=${start}&_end=${end}`
+      }
+        ,
       }),
       getComments: builder.query({
-        query: () => "comments",
+        query: ({start,end}) => {
+          if(start===-1 && end==-1){
+            return "comments"
+          }
+          return `comments?_start=${start}&_end=${end}`
+        },
       }),
   }),
 })

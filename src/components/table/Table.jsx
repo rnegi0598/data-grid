@@ -1,11 +1,19 @@
 import React from "react";
 import TableHeader from "./TableHeader";
 import TableData from "./TableData";
-const Table = () => {
+import Pagination from "../pagination/Pagination";
+import "./table.scss";
+const Table = ({ fieldNames, data }) => {
   return (
-    <div>
-      <TableHeader />
-      <TableData />
+    <div className="table-wrapper">
+      <table>
+        <thead>
+          <TableHeader fieldNames={fieldNames} />
+        </thead>
+        <tbody>
+          <TableData data={data} fieldNames={fieldNames} />
+        </tbody>
+      </table>
     </div>
   );
 };

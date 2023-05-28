@@ -1,0 +1,11 @@
+td{
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+    font-size: 0.8rem;
+
+}
+tr:nth-child(2n){
+    background-color: lightgray;
+
+}

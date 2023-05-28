@@ -1,8 +1,17 @@
 import React from 'react'
+import './tableHeader.scss'
 
-const TableHeader = () => {
+const TableHeader = ({fieldNames}) => {
   return (
-    <div>TableHeader</div>
+    <tr >
+      {
+        fieldNames.map((attr,ind)=>{
+          return (
+            <th key={ind}>{attr}</th>
+          )
+        })
+      }
+    </tr>
   )
 }
 

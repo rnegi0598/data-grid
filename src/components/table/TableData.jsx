@@ -1,8 +1,22 @@
 import React from 'react'
-
-const TableData = () => {
+import './tableData.scss'
+const TableData = ({fieldNames,data}) => {
   return (
-    <div>TableData</div>
+    <>
+      {data.map((obj,ind)=>{
+        return (
+          <tr key={ind}>
+            {
+              fieldNames.map((attr,ind)=>{
+                return (
+                  <td key={ind}>{obj[attr]}</td>
+                )
+              })
+            }
+          </tr>
+        )
+      })}
+    </>
   )
 }
 
