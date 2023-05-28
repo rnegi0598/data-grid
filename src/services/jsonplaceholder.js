@@ -12,14 +12,15 @@ export const placeholderApi = createApi({
     getUser: builder.query({
       query: ({ start, end }) => {
         if (start === -1 && end === -1) {
+          console.log("inside start end -1");
           return "users";
         }
         return `users?_start=${start}&_end=${end}`;
       },
-      transformResponse: (response, meta, arg) => {
+      transformResponse: (response) => {
         // Modify the response data here
-        const { category, value } = arg;
-        const updatedArr = response.map((item) => ({
+        console.log(response.length)
+        return response.map((item) => ({
           id: item.id,
           name: item.name,
           username: item.username,
@@ -28,17 +29,6 @@ export const placeholderApi = createApi({
           phone: item.phone,
           website: item.website,
         }));
-
-        if (category === "all" && value !== "") {
-          return updatedArr.filter((item) => {
-            const valuesArray = Object.values(item);
-            if (valuesArray.includes(value)) {
-              return true;
-            }
-            return false;
-          });
-        }
-        return updatedArr;
       },
     }),
     getPosts: builder.query({

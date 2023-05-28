@@ -5,22 +5,44 @@ import Table from "../../components/table/Table";
 import Pagination from "../../components/pagination/Pagination";
 const Users = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [category,setCategory]=useState('all');
-  const [value,setValue]=useState('');
-
-  const start = (currentPage - 1) * 10;
-  const end = currentPage * 10;
+  const [category, setCategory] = useState("all");
+  const [value, setValue] = useState("");
+  const start = value ? -1 : (currentPage - 1) * 10;
+  const end = value ? -1 : currentPage * 10;
 
   const { data, isError, isFetching, isLoading, isSuccess } = useGetUserQuery({
     start,
     end,
   });
 
-  // console.log(data);
-  
-  if (!data) {
+  if (!data || isFetching) {
     return <div>loading.....</div>;
-  } 
+  }
+
+  //filter for search
+  let userData;
+  if (value) {
+    if (category === "all") {
+      userData = data.filter((item) => {
+        const keys = Object.keys(item);
+        return keys.some((key) => {
+          return item[key]
+            .toString()
+            .toUpperCase()
+            .includes(value.toUpperCase());
+        });
+      });
+    } else {
+      userData = data.filter((item) => {
+        return item[category]
+          .toString()
+          .toUpperCase()
+          .includes(value.toUpperCase());
+      });
+    }
+  } else {
+    userData = data;
+  }
 
   return (
     <div className="datagrid">
@@ -30,12 +52,14 @@ const Users = () => {
         setCategoryField={setCategory}
         setValueField={setValue}
       />
-      <Table fieldNames={Object.keys(data[0])} data={data} />
-      <Pagination
-        currentPage={currentPage}
-        currentPageHandler={setCurrentPage}
-        totalPages={1}
-      />
+      <Table fieldNames={Object.keys(data[0])} data={userData} />
+      {!value && (
+        <Pagination
+          currentPage={currentPage}
+          currentPageHandler={setCurrentPage}
+          totalPages={1}
+        />
+      )}
     </div>
   );
 };

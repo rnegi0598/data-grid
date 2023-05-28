@@ -8,8 +8,9 @@ const Comments = () => {
   const [category,setCategory]=useState('all');
   const [value,setValue]=useState('');
 
-  const start = (currentPage - 1) * 10;
-  const end = currentPage * 10;
+ //if value is not empty meaning filter is applied ,then get all the values
+ const start = value ? -1 : (currentPage - 1) * 10;
+ const end = value ? -1 : currentPage * 10;
 
   const { data, isError, isFetching, isLoading, isSuccess } = useGetCommentsQuery({
     start,
@@ -22,6 +23,33 @@ const Comments = () => {
     return <div>loading.....</div>;
    
   } 
+
+  //filter for search
+  let commentData;
+  if (value) {
+    if (category === "all") {
+      commentData = data.filter((item) => {
+        const keys = Object.keys(item);
+        return keys.some((key) => {
+          return item[key]
+            .toString()
+            .toUpperCase()
+            .includes(value.toUpperCase());
+        });
+      });
+    } else {
+      commentData = data.filter((item) => {
+        return item[category]
+          .toString()
+          .toUpperCase()
+          .includes(value.toUpperCase());
+      });
+    }
+  } else {
+    commentData = data;
+  }
+
+  
   return (
     <div className="datagrid">
       <SearchBar
@@ -30,12 +58,14 @@ const Comments = () => {
         setCategoryField={setCategory}
         setValueField={setValue}
       />
-      <Table fieldNames={Object.keys(data[0])} data={data} />
-      <Pagination
+      <Table fieldNames={Object.keys(data[0])} data={commentData} />
+      {
+        !value && (<Pagination
         currentPage={currentPage}
         currentPageHandler={setCurrentPage}
         totalPages={20}
-      />
+      />)
+      }
     </div>
   );
 };

@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "./searchbar.scss";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-const SearchBar = ({ fieldNames }) => {
+const SearchBar = ({ fieldNames ,currentPageHandler,setCategoryField,setValueField}) => {
+  const [value,setValue]=useState('');
+  const [category,setCategory]=useState('all');
+
+  const submitHandler=()=>{
+    if(value==="" && category===''){
+      return ;
+    }
+    currentPageHandler(1);
+    setCategoryField(category);
+    setValueField(value)
+    setValue('');
+    setCategory('all');
+  }
   return (
     <div className="search-bar">
       <div className="search-box">
@@ -10,24 +23,25 @@ const SearchBar = ({ fieldNames }) => {
           <SearchOutlinedIcon className="search-icon" />
           <input
             placeholder={`Search for ${fieldNames[0]} ,${fieldNames[1]} etc . . .`}
+            value={value} onChange={(e)=>{setValue(e.target.value)}}
           />
         </div>
       </div>
       <div className="category">
         <p>Category</p>
-        <select id="cars" name="cars" defaultValue="all">
+        <select id="cars" name="cars"  value={category} onChange={(e)=>{setCategory(e.target.value)}}>
           <option value="all">All</option>
-          {fieldNames.map((category, ind) => {
+          {fieldNames.map((field, ind) => {
             return (
-              <option value={category} key={ind}>
-                {category}
+              <option value={field} key={ind}>
+                {field}
               </option>
             );
           })}
         </select>
       </div>
       <div className="search">
-        <div className="search-btn">Search</div>
+        <div className="search-btn" onClick={submitHandler}>Search</div>
       </div>
     </div>
   );
