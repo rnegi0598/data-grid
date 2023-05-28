@@ -4,31 +4,13 @@ import Users from "../../pages/users/Users";
 import Posts from "../../pages/posts/Posts";
 import Comments from "../../pages/comments/Comments";
 
-const DataGrid = ({ activeType, currentPage, setCurrentPage }) => {
-  const currentPageHandler = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+const DataGrid = ({ activeType }) => {
   if (activeType === "users") {
-    return (
-      <Users
-        currentPage={currentPage}
-        currentPageHandler={currentPageHandler}
-      />
-    );
+    return <Users />;
   } else if (activeType === "posts") {
-    return (
-      <Posts
-        currentPage={currentPage}
-        currentPageHandler={currentPageHandler}
-      />
-    );
+    return <Posts />;
   } else {
-    return (
-      <Comments
-        currentPage={currentPage}
-        currentPageHandler={currentPageHandler}
-      />
-    );
+    return <Comments />;
   }
 };
 
