@@ -41,7 +41,7 @@ const SearchBar = ({ fieldNames ,currentPageHandler,setCategoryField,setValueFie
         </select>
       </div>
       <div className="search">
-        <div className="search-btn" onClick={submitHandler}>Search</div>
+        <div className="search-btn" onClick={submitHandler}>{value?"Search":"Reset"}</div>
       </div>
     </div>
   );

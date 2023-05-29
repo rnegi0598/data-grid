@@ -1,11 +1,13 @@
-td{
-    border: 1px solid black;
+td {
+    border: 1px solid;
     padding: 5px;
     text-align: center;
-    font-size: 0.8rem;
-
+    font-size: 0.9rem;
 }
-tr:nth-child(2n){
-    background-color: lightgray;
+tr:nth-child(2n) {
+    background-color: #f3f5f7;
+}
 
+tr:nth-child(2n + 1) {
+    background-color: white;
 }

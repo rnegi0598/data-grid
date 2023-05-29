@@ -8,6 +8,8 @@ const Users = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState("all");
   const [value, setValue] = useState("");
+  //when filters is applied get all the values ,for that put start=-1 and end=-1
+  //when filter not applied set start and end according to page set in pagination
   const start = value ? -1 : (currentPage - 1) * 10;
   const end = value ? -1 : currentPage * 10;
 
@@ -17,7 +19,7 @@ const Users = () => {
   });
 
   if (!data || isFetching) {
-    return <Loading/>
+    return <Loading />;
   }
 
   //filter for search
@@ -39,7 +41,7 @@ const Users = () => {
           .toString()
           .toUpperCase()
           .includes(value.toUpperCase());
-      });
+      }); 
     }
   } else {
     userData = data;
@@ -53,7 +55,7 @@ const Users = () => {
         setCategoryField={setCategory}
         setValueField={setValue}
       />
-      <Table fieldNames={Object.keys(data[0])} data={userData} />
+      <Table fieldNames={Object.keys(data[0])} data={userData} value={value } category={category} />
       {!value && (
         <Pagination
           currentPage={currentPage}

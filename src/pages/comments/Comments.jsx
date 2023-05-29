@@ -8,19 +8,18 @@ const Comments = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState("all");
   const [value, setValue] = useState("");
-
-  //if value is not empty meaning filter is applied ,then get all the values
+  //when filters is applied get all the values ,for that put start=-1 and end=-1
+  //when filter not applied set start and end according to page set in pagination
   const start = value ? -1 : (currentPage - 1) * 10;
   const end = value ? -1 : currentPage * 10;
+  
   const { data, isError, isFetching, isLoading, isSuccess } =
     useGetCommentsQuery({
       start,
       end,
     });
 
-
-
-  if (!data) {
+  if (!data || isFetching) {
     return <Loading />;
   }
 
@@ -57,7 +56,7 @@ const Comments = () => {
         setCategoryField={setCategory}
         setValueField={setValue}
       />
-      <Table fieldNames={Object.keys(data[0])} data={commentData} />
+      <Table fieldNames={Object.keys(data[0])} data={commentData} value={value} category={category} />
       {!value && (
         <Pagination
           currentPage={currentPage}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TableHeader from "./TableHeader";
 import TableData from "./TableData";
 import "./table.scss";
-const Table = ({ fieldNames, data }) => {
+const Table = ({ fieldNames, data ,value,category}) => {
   
   const [sortedData, setSortedData] = useState(data);
   const [activeField, setActiveField] = useState("");
@@ -37,7 +37,7 @@ const Table = ({ fieldNames, data }) => {
           />
         </thead>
         <tbody>
-          <TableData data={sortedData} fieldNames={fieldNames} />
+          <TableData data={sortedData} fieldNames={fieldNames} value={value} category={category}  />
         </tbody>
       </table>
     </div>
