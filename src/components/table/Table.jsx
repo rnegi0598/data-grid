@@ -1,43 +1,40 @@
-import React ,{useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import TableHeader from "./TableHeader";
 import TableData from "./TableData";
 import "./table.scss";
 const Table = ({ fieldNames, data }) => {
-  const [sortedData,setSortedData]=useState(data);
-  const [fieldArray,setFieldArray]=useState(fieldNames.map((element) => ({
-    "fieldName":element,
-    "value": '',
-  })));
+  
+  const [sortedData, setSortedData] = useState(data);
+  const [activeField, setActiveField] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
+  useEffect(() => {
+  
 
-  useEffect(()=>{
-    //sort the array
-    // setSortedData((arr)=>{
-    //   return arr.sort((a,b)=>{
+    if (!activeField) {
+      setSortedData(data);
+      return;
+    }
 
-    //   })
-    // })
+    const modifyArray = [...data].sort((a, b) => {
+      if(sortOrder=="asc"){
+        return a[activeField] > b[activeField];
+      }else{
+        return b[activeField] > a[activeField];
+      }
+    });
+    setSortedData(modifyArray);
+  }, [activeField, sortOrder,data]);
 
-  },[fieldArray]);
-
-  const sortFunc=({fieldName,value})=>{
-    //updated field array
-    setFieldArray((arr)=>{
-      return arr.map((item)=>{
-        if(item.fieldName===fieldName){
-          item.value=value;
-        }
-        return item;
-      })
-    })
-
-  }
-
-  console.log(fieldArray);
   return (
     <div className="table-wrapper">
       <table>
         <thead>
-          <TableHeader fieldNames={fieldNames}  />
+          <TableHeader
+            fieldNames={fieldNames}
+            activeField={activeField}
+            setActiveField={setActiveField}
+            setSortOrder={setSortOrder}
+          />
         </thead>
         <tbody>
           <TableData data={sortedData} fieldNames={fieldNames} />

@@ -12,14 +12,13 @@ export const placeholderApi = createApi({
     getUser: builder.query({
       query: ({ start, end }) => {
         if (start === -1 && end === -1) {
-          console.log("inside start end -1");
           return "users";
         }
         return `users?_start=${start}&_end=${end}`;
       },
       transformResponse: (response) => {
         // Modify the response data here
-        console.log(response.length)
+
         return response.map((item) => ({
           id: item.id,
           name: item.name,
@@ -36,6 +35,7 @@ export const placeholderApi = createApi({
         if (start === -1 && end === -1) {
           return "posts";
         }
+
         return `posts?_start=${start}&_end=${end}`;
       },
     }),

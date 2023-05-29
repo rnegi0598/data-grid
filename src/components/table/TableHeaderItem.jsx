@@ -2,44 +2,46 @@ import React, { useState, useEffect } from "react";
 import arrowDown from "../../assets/arrowDown.svg";
 import arrowUp from "../../assets/arrowUp.svg";
 
-const TableHeaderItem = ({ ind, attr, sortField, setSortField }) => {
+const TableHeaderItem = ({ ind, attr, activeField, setActiveField ,setSortOrder}) => {
   const [ascending, setAscending] = useState(false);
   const [descending, setDescending] = useState(false);
 
   useEffect(() => {
-    if (sortField !== attr) {
+    if (activeField !== attr) {
       setAscending(false);
       setDescending(false);
     }
-  }, [sortField]);
+  }, [activeField]);
 
   const ascHandler = (attr) => {
     if (descending && !ascending) {
       setAscending(true);
       setDescending(false);
-      setSortField(attr);
+      setActiveField(attr);
     } else {
       if (ascending) {
-        setSortField("");
+        setActiveField("");
       } else {
-        setSortField(attr);
+        setActiveField(attr);
       }
       setAscending((prev) => !prev);
     }
+    setSortOrder('asc')
   };
   const descHandler = (attr) => {
     if (ascending && !descending) {
       setDescending(true);
       setAscending(false);
-      setSortField(attr);
+      setActiveField(attr);
     } else {
       if (descending) {
-        setSortField("");
+        setActiveField("");
       } else {
-        setSortField(attr);
+        setActiveField(attr);
       }
       setDescending((prev) => !prev);
     }
+    setSortOrder("desc");
   };
 
   return (

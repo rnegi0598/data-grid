@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "./tableHeader.scss";
 import TableHeaderItem from "./TableHeaderItem";
-const TableHeader = ({ fieldNames }) => {
-  const [sortField, setSortField] = useState("");
-console.log(sortField);
+const TableHeader = ({ fieldNames ,activeField,setActiveField,setSortOrder}) => {
+ 
   return (
     <tr>
       {fieldNames.map((attr, ind) => {
@@ -12,8 +11,9 @@ console.log(sortField);
             attr={attr}
             ind={ind}
             key={ind}
-            sortField={sortField}
-            setSortField={setSortField}
+            activeField={activeField}
+            setActiveField={setActiveField}
+            setSortOrder={setSortOrder}
           />
         );
       })}

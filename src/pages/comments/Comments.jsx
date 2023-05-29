@@ -1,4 +1,4 @@
-import React ,{useState} from "react";
+import React, { useState } from "react";
 import { useGetCommentsQuery } from "../../services/jsonplaceholder";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Table from "../../components/table/Table";
@@ -6,24 +6,23 @@ import Pagination from "../../components/pagination/Pagination";
 import Loading from "../loading/Loading";
 const Comments = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [category,setCategory]=useState('all');
-  const [value,setValue]=useState('');
+  const [category, setCategory] = useState("all");
+  const [value, setValue] = useState("");
 
- //if value is not empty meaning filter is applied ,then get all the values
- const start = value ? -1 : (currentPage - 1) * 10;
- const end = value ? -1 : currentPage * 10;
+  //if value is not empty meaning filter is applied ,then get all the values
+  const start = value ? -1 : (currentPage - 1) * 10;
+  const end = value ? -1 : currentPage * 10;
+  const { data, isError, isFetching, isLoading, isSuccess } =
+    useGetCommentsQuery({
+      start,
+      end,
+    });
 
-  const { data, isError, isFetching, isLoading, isSuccess } = useGetCommentsQuery({
-    start,
-    end,
-  });
 
-  // console.log(data);
-  
+
   if (!data) {
-    return  <Loading/>
-   
-  } 
+    return <Loading />;
+  }
 
   //filter for search
   let commentData;
@@ -50,7 +49,6 @@ const Comments = () => {
     commentData = data;
   }
 
-  
   return (
     <div className="datagrid">
       <SearchBar
@@ -60,13 +58,13 @@ const Comments = () => {
         setValueField={setValue}
       />
       <Table fieldNames={Object.keys(data[0])} data={commentData} />
-      {
-        !value && (<Pagination
-        currentPage={currentPage}
-        currentPageHandler={setCurrentPage}
-        totalPages={20}
-      />)
-      }
+      {!value && (
+        <Pagination
+          currentPage={currentPage}
+          currentPageHandler={setCurrentPage}
+          totalPages={20}
+        />
+      )}
     </div>
   );
 };
