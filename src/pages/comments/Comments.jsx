@@ -55,13 +55,14 @@ const Comments = () => {
         currentPageHandler={setCurrentPage}
         setCategoryField={setCategory}
         setValueField={setValue}
+        valueField={value}
       />
       <Table fieldNames={Object.keys(data[0])} data={commentData} value={value} category={category} />
       {!value && (
         <Pagination
           currentPage={currentPage}
           currentPageHandler={setCurrentPage}
-          totalPages={20}
+          totalPages={10}
         />
       )}
     </div>

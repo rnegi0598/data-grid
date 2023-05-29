@@ -54,6 +54,7 @@ const Users = () => {
         currentPageHandler={setCurrentPage}
         setCategoryField={setCategory}
         setValueField={setValue}
+        valueField={value}
       />
       <Table fieldNames={Object.keys(data[0])} data={userData} value={value } category={category} />
       {!value && (

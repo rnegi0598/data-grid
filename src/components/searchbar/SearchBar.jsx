@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./searchbar.scss";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-const SearchBar = ({ fieldNames ,currentPageHandler,setCategoryField,setValueField}) => {
+const SearchBar = ({ fieldNames ,currentPageHandler,setCategoryField,setValueField,valueField}) => {
   const [value,setValue]=useState('');
   const [category,setCategory]=useState('all');
 
@@ -41,7 +41,7 @@ const SearchBar = ({ fieldNames ,currentPageHandler,setCategoryField,setValueFie
         </select>
       </div>
       <div className="search">
-        <div className="search-btn" onClick={submitHandler}>{value?"Search":"Reset"}</div>
+        <div className="search-btn" onClick={submitHandler}>{!valueField?"Search":"Reset"}</div>
       </div>
     </div>
   );

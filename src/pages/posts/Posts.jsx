@@ -54,6 +54,7 @@ const Posts = () => {
         currentPageHandler={setCurrentPage}
         setCategoryField={setCategory}
         setValueField={setValue}
+        valueField={value}
       />
       <Table fieldNames={Object.keys(data[0])} data={postData} value={value} category={category} />
       {!value && (
