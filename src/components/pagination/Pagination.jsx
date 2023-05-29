@@ -5,7 +5,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 const Pagination = ({ currentPage, currentPageHandler, totalPages }) => {
   return (
     <div className="pagination">
-      <button className="prev" onClick={()=>{currentPageHandler(currentPage-1)} } disabled={currentPage===1?true:false} ><ArrowBackIosNewIcon/></button>
+      <button className="prev" title="previous" onClick={()=>{currentPageHandler(currentPage-1)} } disabled={currentPage===1?true:false} ><ArrowBackIosNewIcon/></button>
       {[...Array(totalPages)].map((_, ind) => {
         return (
           <button
@@ -19,7 +19,7 @@ const Pagination = ({ currentPage, currentPageHandler, totalPages }) => {
           </button>
         );
       })}
-      <button className="next" onClick={()=>{currentPageHandler(currentPage+1)}} disabled={currentPage===totalPages?true:false}><ArrowForwardIosIcon/></button>
+      <button className="next" title="next" onClick={()=>{currentPageHandler(currentPage+1)}} disabled={currentPage===totalPages?true:false}><ArrowForwardIosIcon/></button>
     </div>
   );
 };
