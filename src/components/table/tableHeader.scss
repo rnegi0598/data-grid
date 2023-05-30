@@ -30,3 +30,9 @@ th {
           }
     }
 }
+
+@media all and (max-width: 6000px) {
+  th{
+    position: relative;
+  }
+}

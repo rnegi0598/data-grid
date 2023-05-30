@@ -1,34 +1,86 @@
-# Front End Test
-A ReactJS focused take home test for Front-end Developers.
 
-### Instructions
-* Clone this repo
-* Complete this exercise and submit either a zip of the solution or a link to a new repo
-* Please incorporate ReactJS framework into your solution. All other choices of libraries, frameworks, etc. are up to you.
-* Also show case the use of any State Management libraries (e.g. redux, mobx, react-query, etc.) in the application.
+## Features
+1. Navigation Across Multiple Tables     
+    Users can navigate between different tables, such as Users, Posts, and Comments.    
+    Navigation controls allow users to switch between tables seamlessly.  
+2.  Search/Filter    
+    Users can perform global search/filter across the entire table.  
+    Search results are displayed, highlighting the matched values.  
+    Users can also filter within a specific category, narrowing down the search results.
 
-### Requirements
-* Solution should be responsive
-* Use the [JSON Placeholder](https://jsonplaceholder.typicode.com/) API to fetch data for Users, Posts, Comments.
-* Create a reusable Data-Grid Component to render the Data in tabular format. (**Do not use any external libraries**)
-* User should be able to navigate between the different Data-Grids.
-* Should be a single-page application.
-* Data-Grid should have following features implemented:
-	- Pagination Option
-		* Results should be fetched using pagination (?_start=n&_limit=m).
-		* Results to be cached once fetched.
-		* User should be able to see total number of pages available. (https://github.com/typicode/jsonplaceholder/issues/49)
-	- Filtering
-		* GlobalSearch - There should be a search input to filter the data in Data-Grid using searchword.
-		* There should be a filter option to select a specific attribute and value to be filtered.
-	- Sorting
-		* All columns should be sortable.
+3. Pagination  
+    Users can navigate through multiple pages of data.  
+    Pagination controls allow users to easily move to the next or previous page.  
+    The current page number and total number of pages are displayed to provide context.
 
-### Bonus
-* Using Typescript.
-* Use of latest React Hooks and Context APIs will be preferred.
-* Unit Testing
-* Project Layout Structure.
+4. Sortable Columns  
+    All columns in the table data are sortable.  
+    Users can click on a column header to sort the data in ascending or descending order.  
+    Only one column can be sorted at a time; multiple column sorting is not supported.
 
+5. Responsiveness  
+    The app is designed to be responsive and compatible with various devices and screen sizes.  
+    The layout and components adapt to different viewport sizes, ensuring a consistent user experience.
 
+6. Data Caching with RTK Query   
+    Data fetched from APIs is cached using RTK Query.  
+    Cached data improves performance and reduces unnecessary network requests.  
+    Users can enjoy faster data retrieval and a smoother user experience.
 
+## Project Structure
+
+```
+├── src
+│   ├── assets
+│   │   └── arrowDown.svg
+│   │   └── arrowUp.svg
+│   │   └── noResults.png
+│   ├── components
+│   │   ├── datagrid
+│   │   |   └── DataGrid.jsx
+│   │   |   └── datagrid.scss
+│   │   ├── navbar
+│   │   |   └── Navbar.jsx
+│   │   |   └── navbar.scss
+│   │   ├── noMatchFound
+│   │   |   └── NoMatchFound.jsx
+│   │   |   └── noMatchFound.scss
+│   │   └── pagination
+│   │   |   └── Pagination.jsx
+│   │   |   └── pagination.scss
+│   │   └── searchbar
+│   │   |   └── SearchBar.jsx
+│   │   |   └── searchbar.scss
+│   │   └── table
+│   │   |   └── Table.jsx
+│   │   |   └── table.scss
+│   │   |   └── TableData.jsx
+│   │   |   └── tableData.scss
+│   │   |   └── TableHeader.jsx
+│   │   |   └── tableHeader.scss
+│   │   |   └── TableHeaderItem.jsx
+│   ├── pages
+│   │   └── comments
+│   │   |   └── Comments.jsx
+│   │   └── loading
+│   │   |   └── Loading.jsx
+│   │   |   └── loading.scss
+│   │   └── posts
+│   │   |   └── Posts.jsx
+│   │   └── users
+│   │   |   └── users.jsx
+│   ├── services
+│   │   └── jsonplaceholder.js
+│   ├── App.jsx
+│   ├── App.scss
+│   ├── index.jsx
+│   ├── index.css
+│   └── store.js
+├── public
+│   ├── index.html
+│   └── ...
+├── .gitignore
+├── package.json
+├── README.md
+└── ...
+```

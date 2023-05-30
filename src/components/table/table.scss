@@ -11,6 +11,7 @@
         border-collapse: separate;
         border-spacing: 0px;
         width: 100%;
+        user-select: none;
     }
     table td {
         overflow: hidden; /* Hide any overflowing content */
@@ -28,3 +29,14 @@
         border-color: transparent;
     }
 }
+
+@media all and (max-width: 600px) {
+    .table-wrapper{
+        height: 60vh;
+    }
+    .table-wrapper table td{
+        white-space: nowrap ;
+        max-width: 500px;
+    }
+}
+
