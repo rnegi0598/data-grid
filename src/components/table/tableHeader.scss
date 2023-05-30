@@ -5,12 +5,12 @@ th {
     padding-right: 50px;
     text-align: left;
     height: 50px;
-    // position: sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
     background-color: #e6e8eb;
     color: #263445;
     text-transform: capitalize;
-    // top: 0;
-    // left: 0;
     .sort {
         display: inline-block;
         position: absolute;

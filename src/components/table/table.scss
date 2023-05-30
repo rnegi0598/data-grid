@@ -10,16 +10,18 @@
         margin: auto;
         border-collapse: separate;
         border-spacing: 0px;
+        width: 100%;
     }
     table td {
         overflow: hidden; /* Hide any overflowing content */
         white-space: nowrap; /* Prevent line breaks */
         overflow-wrap: break-word; /* Allow word wrapping within the cell */
         padding: 10px;
-        max-width: 700px;
         text-align: left;
         font-size: 0.9rem;
         border: 1px solid;
+
+        white-space: normal; //allow line breaks
     }
     table td,
     table th {
