@@ -1,6 +1,6 @@
 .pagination {
     position: absolute;
-    bottom: 0px;
+    bottom: 5px;
     right: 10px;
     display: flex;
     align-items: center;
@@ -25,7 +25,10 @@
         justify-content: center;
     }
     .active-page {
-        background-color: #f3f5f7;
+       
+        background-color: #C40233;
+        border-radius: 3px;
+        color: white;
         font-weight: 300;
     }
     button:disabled {

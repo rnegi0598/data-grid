@@ -18,7 +18,7 @@ const TableData = ({ fieldNames, data, value ,category}) => {
                 return (
                   <td key={i}>
                     {beforeStr}
-                    <span style={{ color: "red",fontWeight:"900" }}>{highlightedStr}</span>
+                    <span style={{ color: "#fff",backgroundColor:"#C40233" }}>{highlightedStr}</span>
                     {afterStr}
                   </td>
                 );

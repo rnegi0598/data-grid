@@ -22,12 +22,12 @@ const CommentsTable = () => {
   if (!data || isFetching) {
     return <Loading />;
   }
-
+  
   //filter for search
   let commentData;
   if (value) {
     if (category === "all") {
-      commentData = data.filter((item) => {
+      commentData = data.list.filter((item) => {
         const keys = Object.keys(item);
         return keys.some((key) => {
           return item[key]
@@ -37,7 +37,7 @@ const CommentsTable = () => {
         });
       });
     } else {
-      commentData = data.filter((item) => {
+      commentData = data.list.filter((item) => {
         return item[category]
           .toString()
           .toUpperCase()
@@ -45,24 +45,24 @@ const CommentsTable = () => {
       });
     }
   } else {
-    commentData = data;
+    commentData = data.list;
   }
 
   return (
     <div className="datagrid">
       <SearchBar
-        fieldNames={Object.keys(data[0])}
+        fieldNames={Object.keys(data.list[0])}
         currentPageHandler={setCurrentPage}
         setCategoryField={setCategory}
         setValueField={setValue}
         valueField={value}
       />
-      <Table fieldNames={Object.keys(data[0])} data={commentData} value={value} category={category} />
+      <Table fieldNames={Object.keys(data.list[0])} data={commentData} value={value} category={category} />
       {!value && (
         <Pagination
           currentPage={currentPage}
           currentPageHandler={setCurrentPage}
-          totalPages={10}
+          totalPages={data.totalPages}
         />
       )}
     </div>

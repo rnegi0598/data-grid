@@ -26,7 +26,7 @@ const PostsTable = () => {
   let postData;
   if (value) {
     if (category === "all") {
-      postData = data.filter((item) => {
+      postData = data.list.filter((item) => {
         const keys = Object.keys(item);
         return keys.some((key) => {
           return item[key]
@@ -36,7 +36,7 @@ const PostsTable = () => {
         });
       });
     } else {
-      postData = data.filter((item) => {
+      postData = data.list.filter((item) => {
         return item[category]
           .toString()
           .toUpperCase()
@@ -44,24 +44,24 @@ const PostsTable = () => {
       });
     }
   } else {
-    postData = data;
+    postData = data.list;
   }
 
   return (
     <div className="datagrid">
       <SearchBar
-        fieldNames={Object.keys(data[0])}
+        fieldNames={Object.keys(data.list[0])}
         currentPageHandler={setCurrentPage}
         setCategoryField={setCategory}
         setValueField={setValue}
         valueField={value}
       />
-      <Table fieldNames={Object.keys(data[0])} data={postData} value={value} category={category} />
+      <Table fieldNames={Object.keys(data.list[0])} data={postData} value={value} category={category} />
       {!value && (
         <Pagination
           currentPage={currentPage}
           currentPageHandler={setCurrentPage}
-          totalPages={10}
+          totalPages={data.totalPages}
         />
       )}
     </div>

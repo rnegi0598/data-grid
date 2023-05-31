@@ -1,22 +1,21 @@
 .app-wrapper {
     min-height: 100vh;
     width: 100vw;
-    padding-top: 30px;
-    background-color: #f7f8fc;
+    padding-top: 20px;
+    background-color: #e5e4e2;
 
     .app {
         margin: auto;
         width: 90%;
         max-width: 1000px;
-        border: 1px solid #e6e8eb;
+        border-radius: 5px;
         min-height: 80vh;
+        box-shadow: 1px 1px 10px #0c4bcc;
     }
 }
 
-
-
 @media all and (max-width: 600px) {
-   .app-wrapper{
-    padding-top: 5px;
-   }
-  }
+    .app-wrapper {
+        padding-top: 5px;
+    }
+}

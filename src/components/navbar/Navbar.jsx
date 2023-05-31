@@ -4,7 +4,7 @@ const Navbar = ({ activeType, activeHandler }) => {
   return (
     <div className="navbar">
       <div
-        className={activeType === "users" ? "flex-item active" : "flex-item"}
+        className={activeType === "users" ? "flex-item active users" : "flex-item users"}
         onClick={()=>activeHandler("users")}
       >
         Users
@@ -16,7 +16,7 @@ const Navbar = ({ activeType, activeHandler }) => {
         Posts
       </div>
       <div
-        className={activeType === "comments" ? "flex-item active" : "flex-item"}
+        className={activeType === "comments" ? "flex-item active comments" : "flex-item comments"}
         onClick={()=>activeHandler("comments")}
       >
         Comments

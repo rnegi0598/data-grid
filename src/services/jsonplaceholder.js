@@ -16,10 +16,11 @@ export const placeholderApi = createApi({
         }
         return `users?_start=${start}&_end=${end}`;
       },
-      transformResponse: (response) => {
+      transformResponse: (response,meta) => {
         // Modify the response data here
-
-        return response.map((item) => ({
+        const totalCount=Number(meta.response.headers.get('x-total-count'));
+        const totalPages=Math.ceil(totalCount/10);
+        const list= response.map((item) => ({
           id: item.id,
           name: item.name,
           username: item.username,
@@ -28,6 +29,7 @@ export const placeholderApi = createApi({
           phone: item.phone,
           website: item.website,
         }));
+        return {totalPages,list}
       },
     }),
     getPosts: builder.query({
@@ -38,6 +40,11 @@ export const placeholderApi = createApi({
 
         return `posts?_start=${start}&_end=${end}`;
       },
+      transformResponse:(response,meta)=>{
+        const totalCount=Number(meta.response.headers.get('x-total-count'));
+        const totalPages=Math.ceil(totalCount/10);
+        return {totalPages,list:response};
+      },
     }),
     getComments: builder.query({
       query: ({ start, end }) => {
@@ -45,6 +52,11 @@ export const placeholderApi = createApi({
           return "comments";
         }
         return `comments?_start=${start}&_end=${end}`;
+      },
+      transformResponse:(response,meta)=>{
+        const totalCount=Number(meta.response.headers.get('x-total-count'));
+        const totalPages=Math.ceil(totalCount/10);
+        return {totalPages,list:response};
       },
     }),
   }),
