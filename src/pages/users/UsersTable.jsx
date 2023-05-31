@@ -4,7 +4,7 @@ import SearchBar from "../../components/searchbar/SearchBar";
 import Table from "../../components/table/Table";
 import Pagination from "../../components/pagination/Pagination";
 import Loading from "../loading/Loading";
-const Users = () => {
+const UsersTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState("all");
   const [value, setValue] = useState("");
@@ -68,4 +68,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default UsersTable;

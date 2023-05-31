@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useGetPostsQuery } from "../../services/jsonplaceholder";
+import { useGetCommentsQuery } from "../../services/jsonplaceholder";
 import SearchBar from "../../components/searchbar/SearchBar";
 import Table from "../../components/table/Table";
 import Pagination from "../../components/pagination/Pagination";
 import Loading from "../loading/Loading";
-const Posts = () => {
+const CommentsTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState("all");
   const [value, setValue] = useState("");
@@ -12,21 +12,22 @@ const Posts = () => {
   //when filter not applied set start and end according to page set in pagination
   const start = value ? -1 : (currentPage - 1) * 10;
   const end = value ? -1 : currentPage * 10;
-
-  const { data, isError, isFetching, isLoading, isSuccess } = useGetPostsQuery({
-    start,
-    end,
-  });
+  
+  const { data, isError, isFetching, isLoading, isSuccess } =
+    useGetCommentsQuery({
+      start,
+      end,
+    });
 
   if (!data || isFetching) {
     return <Loading />;
   }
 
   //filter for search
-  let postData;
+  let commentData;
   if (value) {
     if (category === "all") {
-      postData = data.filter((item) => {
+      commentData = data.filter((item) => {
         const keys = Object.keys(item);
         return keys.some((key) => {
           return item[key]
@@ -36,7 +37,7 @@ const Posts = () => {
         });
       });
     } else {
-      postData = data.filter((item) => {
+      commentData = data.filter((item) => {
         return item[category]
           .toString()
           .toUpperCase()
@@ -44,7 +45,7 @@ const Posts = () => {
       });
     }
   } else {
-    postData = data;
+    commentData = data;
   }
 
   return (
@@ -56,7 +57,7 @@ const Posts = () => {
         setValueField={setValue}
         valueField={value}
       />
-      <Table fieldNames={Object.keys(data[0])} data={postData} value={value} category={category} />
+      <Table fieldNames={Object.keys(data[0])} data={commentData} value={value} category={category} />
       {!value && (
         <Pagination
           currentPage={currentPage}
@@ -68,4 +69,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default CommentsTable;

@@ -1,16 +1,16 @@
 import React from "react";
 import "./datagrid.scss";
-import Users from "../../pages/users/Users";
-import Posts from "../../pages/posts/Posts";
-import Comments from "../../pages/comments/Comments";
+import UsersTable from "../../pages/users/UsersTable";
+import PostsTable from "../../pages/posts/PostsTable";
+import CommentsTable from "../../pages/comments/CommentsTable";
 
 const DataGrid = ({ activeType }) => {
   if (activeType === "users") {
-    return <Users />;
+    return <UsersTable />;
   } else if (activeType === "posts") {
-    return <Posts />;
+    return <PostsTable />;
   } else {
-    return <Comments />;
+    return <CommentsTable />;
   }
 };
 
