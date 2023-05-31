@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useGetUserQuery } from "../../services/jsonplaceholder";
-import SearchBar from "../../components/searchbar/SearchBar";
-import Table from "../../components/table/Table";
-import Pagination from "../../components/pagination/Pagination";
+import SearchBar from "../searchbar/SearchBar";
+import Table from "../table/Table";
+import Pagination from "../pagination/Pagination";
 import Loading from "../loading/Loading";
 const UsersTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
