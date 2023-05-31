@@ -1,8 +1,10 @@
 
 ## Features
+
 1. Navigation Across Multiple Tables     
     Users can navigate between different tables, such as Users, Posts, and Comments.    
-    Navigation controls allow users to switch between tables seamlessly.  
+    Navigation controls allow users to switch between tables seamlessly. 
+
 2.  Search/Filter    
     Users can perform global search/filter across the entire table.  
     Search results are displayed, highlighting the matched values.  
@@ -16,7 +18,7 @@
 4. Sortable Columns  
     All columns in the table data are sortable.  
     Users can click on a column header to sort the data in ascending or descending order.  
-    Only one column can be sorted at a time; multiple column sorting is not supported.
+    Only one column can be sorted at a time, multiple column sorting is not supported.
 
 5. Responsiveness  
     The app is designed to be responsive and compatible with various devices and screen sizes.  
@@ -36,9 +38,15 @@
 │   │   └── arrowUp.svg
 │   │   └── noResults.png
 │   ├── components
+│   │   └── loading
+│   │   |   └── Loading.jsx
+│   │   |   └── loading.scss
 │   │   ├── datagrid
 │   │   |   └── DataGrid.jsx
 │   │   |   └── datagrid.scss
+│   │   |   └── usersTable.jsx
+│   │   |   └── PostsTable.jsx
+│   │   |   └── CommentsTable.jsx
 │   │   ├── navbar
 │   │   |   └── Navbar.jsx
 │   │   |   └── navbar.scss
@@ -59,16 +67,6 @@
 │   │   |   └── TableHeader.jsx
 │   │   |   └── tableHeader.scss
 │   │   |   └── TableHeaderItem.jsx
-│   ├── pages
-│   │   └── comments
-│   │   |   └── Comments.jsx
-│   │   └── loading
-│   │   |   └── Loading.jsx
-│   │   |   └── loading.scss
-│   │   └── posts
-│   │   |   └── Posts.jsx
-│   │   └── users
-│   │   |   └── users.jsx
 │   ├── services
 │   │   └── jsonplaceholder.js
 │   ├── App.jsx
